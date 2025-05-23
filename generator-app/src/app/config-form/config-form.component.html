@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <div *ngFor="let field of fields; let i = index" class="rule-block">
+    <h4>Champ {{ field.label }}</h4>
+
+    <label>Valeur :
+      <input type="text" [formControlName]="field.name" />
+    </label>
+
+    <label>OrderIndex :
+      <input type="number"
+             [(ngModel)]="rules[i].orderIndex"
+             [ngModelOptions]="{standalone: true}"
+             name="orderIndex{{i}}" />
+    </label>
+
+    <label>Field :
+      <input type="text"
+             [(ngModel)]="rules[i].field"
+             [ngModelOptions]="{standalone: true}"
+             name="field{{i}}" />
+    </label>
+
+    <label>Length :
+      <input type="number"
+             [(ngModel)]="rules[i].length"
+             [ngModelOptions]="{standalone: true}"
+             name="length{{i}}" />
+    </label>
+
+    <label>Prefix :
+      <input type="text"
+             [(ngModel)]="rules[i].prefix"
+             [ngModelOptions]="{standalone: true}"
+             name="prefix{{i}}" />
+    </label>
+
+    <label>Suffix :
+      <input type="text"
+             [(ngModel)]="rules[i].suffix"
+             [ngModelOptions]="{standalone: true}"
+             name="suffix{{i}}" />
+    </label>
+    <div *ngIf="field.name === 'birthDate'">
+  <label>
+    dateFormat:
+    <input
+      type="text"
+      [(ngModel)]="rules[i].dateFormat"
+      [ngModelOptions]="{ standalone: true }"
+      name="orderIndex{{i}}"
+    />
+  </label>
+</div>
+
+  </div>
+
+  <button type="submit">Générer</button>
+</form>
+
+<div *ngIf="generated">
+  <h3>Résultat généré :</h3>
+  <p>{{ generated }}</p>
+</div>
